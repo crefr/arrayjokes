@@ -75,7 +75,3 @@ rectangle_t multRect(rectangle_t mat1, rectangle_t mat2)
                 *rectVal(multrect, resX, resY) += *rectVal(mat1, now, resY) * *rectVal(mat2, resX, now);
     return multrect;
 }
-
-
-
-
