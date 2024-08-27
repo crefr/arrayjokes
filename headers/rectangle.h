@@ -9,9 +9,12 @@ typedef struct rectangle
 } rectangle_t;
 
 void printRectangle(rectangle_t rect);
-rectangle_t newRect(size_t sizeX, size_t sizeY);
-void delRect(rectangle_t *rect);
+rectangle_t rectCtor(size_t sizeX, size_t sizeY);
+void rectDtor(rectangle_t *rect);
 rectangle_t sumRect(rectangle_t mat1, rectangle_t mat2);
+rectangle_t multRect(rectangle_t mat1, rectangle_t mat2);
 void fillRect(rectangle_t rect1, const int *data);
+int *rectVal(rectangle_t rect, size_t x, size_t y);
+
 
 #endif

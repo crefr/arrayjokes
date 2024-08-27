@@ -14,10 +14,9 @@ void teams();
 
 int main()
 {
-    rectangle_t matrix1 = newRect(sizeX, sizeY);
-    rectangle_t matrix2 = newRect(sizeX, sizeY);
-    rectangle_t matsum  = newRect(sizeX, sizeY);
-
+    rectangle_t matrix1 = rectCtor(sizeX, sizeY);
+    rectangle_t matrix2 = rectCtor(sizeX, sizeY);
+    rectangle_t matrix3 = rectCtor(sizeY, sizeX);
     const int data1[][3] =
         {
             {1,2,3},
@@ -28,8 +27,15 @@ int main()
             {3,3,3},
             {4,5,6}
         };
+    const int data3[][2] =
+        {
+            {3,3},
+            {4,5},
+            {6,7}
+        };
     fillRect(matrix1, (const int *)data1);
     fillRect(matrix2, (const int *)data2);
+    fillRect(matrix3, (const int *)data3);
 
     printRectangle(matrix1);
     putchar('\n');
@@ -37,12 +43,22 @@ int main()
     printRectangle(matrix2);
     putchar('\n');
 
-    matsum = sumRect(matrix1, matrix2);
-    printRectangle(matsum);
+    printRectangle(matrix3);
+    putchar('\n');
 
-    delRect(&matrix1);
-    delRect(&matrix2);
-    delRect(&matrix1);
+    rectangle_t matsum = sumRect(matrix1, matrix2);
+    printRectangle(matsum);
+    putchar('\n');
+
+    rectangle_t matmult = multRect(matrix2, matrix3);
+    printRectangle(matmult);
+    putchar('\n');
+
+    rectDtor(&matrix1);
+    rectDtor(&matrix2);
+    rectDtor(&matrix3);
+    rectDtor(&matsum);
+    rectDtor(&matmult);
     return 0;
 }
 
