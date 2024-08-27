@@ -75,3 +75,34 @@ rectangle_t multRect(rectangle_t mat1, rectangle_t mat2)
                 *rectVal(multrect, resX, resY) += *rectVal(mat1, now, resY) * *rectVal(mat2, resX, now);
     return multrect;
 }
+
+long long int determinator(rectangle_t rect)
+{
+    assert(rect.sizeX == rect.sizeY);
+    assert(rect.matrix != NULL);
+
+    if (rect.sizeX == 2)
+        return *rectVal(rect, 0, 0) * *rectVal(rect, 1, 1) - *rectVal(rect, 0, 1) * *rectVal(rect, 1, 0);
+    long long int sum = 0;
+
+
+    rectangle_t temp = rectCtor(rect.sizeX - 1, rect.sizeY - 1);
+    int sign = 1;
+    for (size_t px = 0; px < rect.sizeX; px++)
+    {
+        for (size_t x = 0, xi = 0; x < rect.sizeX; x++, xi++)
+        {
+            if (x == px)
+            {
+                xi--;
+                continue;
+            }
+            for (size_t y = 1; y < rect.sizeY; y++)
+                *rectVal(temp, xi, y - 1) = *rectVal(rect, x, y);
+        }
+        sum += sign * determinator(temp) * *rectVal(rect, px, 0);
+        sign *= -1;
+    }
+    rectDtor(&temp);
+    return sum;
+}

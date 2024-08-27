@@ -15,6 +15,7 @@ rectangle_t sumRect(rectangle_t mat1, rectangle_t mat2);
 rectangle_t multRect(rectangle_t mat1, rectangle_t mat2);
 void fillRect(rectangle_t rect1, const int *data);
 int *rectVal(rectangle_t rect, size_t x, size_t y);
+long long int determinator(rectangle_t rect);
 
 
 #endif
