@@ -4,7 +4,7 @@
 typedef struct varlen
 {
     int** matrix;
-    size_t strnum;
+    size_t rownum;
     size_t* lenarray;
 } varlen_t;
 
