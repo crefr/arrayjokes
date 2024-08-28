@@ -7,23 +7,27 @@
 const int TEAMCOUNT = 6;
 const int TABLENUM = (TEAMCOUNT * (TEAMCOUNT - 1)) / 2;
 
+const int SIZEX = 50000;
+const int SIZEY = 50000;
+
 void teams();
 
 int main()
 {
-    const int data[][5] =
-        {
-            {1, 2, 8, 5, 5},
-            {9, 8, 7, 6, 9},
-            {8, 6, 4, 8, 7},
-            {8, 8, 6, 4, 1},
-            {9, 1, 5, 6, 4}
-        };
-    rectangle_t matrix = rectCtor(5,5);
-    fillRect(matrix, (const int *)data);
+    //const int data[SIZEY][SIZEX] =
+    //    {
+    //        {1, 2, 8, 5, 5},
+    //        {9, 8, 7, 6, 9},
+    //        {8, 6, 4, 8, 7},
+    //        {8, 8, 6, 4, 1},
+    //        {9, 1, 5, 6, 4}
+    //    };
+    rectangle_t matrix = rectCtor(SIZEX, SIZEY);
+    // fillRect(matrix, (const int *)data);
 
-    printRectangle(matrix);
+    // printRectangle(matrix);
     printf("%lld\n", determinator(matrix));
+    rectDtor(&matrix);
     return 0;
 }
 
