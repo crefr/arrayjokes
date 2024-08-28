@@ -5,6 +5,7 @@
 #include <stdarg.h>
 
 #include "varlength.h"
+//#include "printSomething.h"
 
 void arrayCtor(array_t *arr, size_t elsize, size_t len)
 {
@@ -33,9 +34,17 @@ void printArray(array_t arr, const char *printflag)
     putchar('\n');
 }
 
+void printArrayF(array_t arr, printElem_t printer)
+{
+    for(size_t index = 0; index < arr.len; index++)
+        printer(arrayGetElement(arr, index));
+    putchar('\n');
+}
+
 void fillArray(array_t arr, void *data, size_t size)
 {
     assert(data != NULL);
+    assert(arr.len * arr.element_size >= size);
     memcpy(arr.array, data, size);
 }
 
@@ -73,7 +82,7 @@ void fillVarlen(array_t arr, void *data, size_t size)
     for (size_t row = 0; row < arr.len; row++)
     {
         array_t rowarr = *((array_t *)arrayGetElement(arr, row));
-        printf("%llu\n", rowarr.len);
+        //printf("%llu\n", rowarr.len);
 
         size_t possize = rowarr.len * rowarr.element_size;
         if (size > possize)
@@ -103,6 +112,12 @@ void printVarlen(array_t varmat, const char *printflag)
 {
     for (size_t arrn = 0; arrn < varmat.len; arrn++)
         printArray( ((array_t *)(varmat.array))[arrn], printflag);
+}
+
+void printVarlenF(array_t varmat, printElem_t printer)
+{
+    for (size_t arrn = 0; arrn < varmat.len; arrn++)
+        printArrayF( ((array_t *)(varmat.array))[arrn], printer);
 }
 
 void ptrprintf(const char *format, ...)

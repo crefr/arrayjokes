@@ -12,7 +12,7 @@ CFLAGS = -c -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-
 		 -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla -D_DEBUG -D_EJUDGE_CLIENT_SIDE				\
 		 -I./$(HEADDIR)
 
-$(FILENAME): $(OBJDIR)main.o $(OBJDIR)teamTable.o $(OBJDIR)rectangle.o $(OBJDIR)varlength.o
+$(FILENAME): $(OBJDIR)main.o $(OBJDIR)teamTable.o $(OBJDIR)rectangle.o $(OBJDIR)varlength.o $(OBJDIR)printSomething.o
 	$(CC) $^ -o $@
 
 $(OBJDIR)main.o: $(SRCDIR)main.cpp $(HEADDIR)teamTable.h $(HEADDIR)rectangle.h $(HEADDIR)varlength.h
@@ -24,7 +24,10 @@ $(OBJDIR)teamTable.o: $(SRCDIR)teamTable.cpp $(HEADDIR)teamTable.h
 $(OBJDIR)rectangle.o: $(SRCDIR)rectangle.cpp $(HEADDIR)rectangle.h
 	$(CC) $(CFLAGS) $< -o $@
 
-$(OBJDIR)varlength.o: $(SRCDIR)varlength.cpp $(HEADDIR)varlength.h
+$(OBJDIR)varlength.o: $(SRCDIR)varlength.cpp $(HEADDIR)varlength.h $(HEADDIR)printSomething.h
+	$(CC) $(CFLAGS) $< -o $@
+
+$(OBJDIR)printSomething.o: $(SRCDIR)printSomething.cpp $(HEADDIR)printSomething.h
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
