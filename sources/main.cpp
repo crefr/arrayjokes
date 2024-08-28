@@ -7,15 +7,19 @@
 
 int main()
 {
-    size_t lens[] = {1,5,8,3};
-    const int data[17] = {1,5,3,4,8,8,4,8,54,8,584,4,5,9,8,6,666};
-    const size_t LENNUM = sizeof(lens) / sizeof(lens[0]);
+    array_t arrayInt = {};
+    arrayCtor(&arrayInt, sizeof(int), 20);
+    int data[] = {2,5,6,48,4,5,4,5,1,8,5};
+    fillArray(arrayInt, (void *)data, sizeof(data));
+    printArray(arrayInt, "%d ");
 
-    varlen_t var = {};
-    varlenCtor(&var, lens, LENNUM);
-    fillVarlen(var, data);
-    printVarlen(var);
+    putchar('\n');
 
-    varlenDtor(&var);
+    size_t lens[] = {2,5,16,5};
+    const int LENNUM = sizeof(lens) / sizeof(lens[0]);
+    array_t arrayArrayInt = {};
+    varlenCtor(&arrayArrayInt, sizeof(int), lens, LENNUM);
+    fillVarlen(arrayArrayInt, (void *) data, sizeof(data));
+    printVarlen(arrayArrayInt, "%d ");
     return 0;
 }
