@@ -11,5 +11,6 @@ typedef struct varlen
 void varlenCtor(varlen_t* varmat, size_t* lenarray, size_t rownum);
 void printVarlen(varlen_t varmat);
 void varlenDtor(varlen_t* varmat);
+void fillVarlen(varlen_t varmat, const int *data);
 
 #endif

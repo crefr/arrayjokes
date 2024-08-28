@@ -38,6 +38,14 @@ void varlenDtor(varlen_t* varmat)
     varmat -> lenarray = NULL;
 }
 
+void fillVarlen(varlen_t varmat, const int *data)
+{
+    size_t index = 0;
+    for (size_t row = 0; row < varmat.rownum; row++)
+        for (size_t rowindex = 0; rowindex < varmat.lenarray[row]; rowindex++, index++)
+            varmat.matrix[row][rowindex] = data[index];
+}
+
 void printVarlen(varlen_t varmat)
 {
     for (size_t arrn = 0; arrn < varmat.rownum; arrn++)
