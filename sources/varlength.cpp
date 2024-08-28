@@ -129,13 +129,20 @@ void ptrprintf(const char *format, ...)
         switch(*p)
         {
             case 'l':
-                lflag = 1;
+                p++;
+                switch(*p)
+                {
+
+
                 break;
             case 'd':
                 printf("%d", *va_arg(ap, int*));
                 break;
-            case 'f': case 'g':
-                printf("%lg", *va_arg(ap, double*));
+            case 'f':
+                printf("%f", *va_arg(ap, float*));
+                break;
+            case 'g':
+                printf("%g", *va_arg(ap, float*));
                 break;
             case 's':
                 printf("%s", *va_arg(ap, char**));
