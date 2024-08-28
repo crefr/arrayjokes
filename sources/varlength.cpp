@@ -5,17 +5,18 @@
 
 #include "varlength.h"
 
-varlen_t varlenCtor(size_t* lenarray, size_t rownum)
+void varlenCtor(varlen_t* varmat, size_t* lenarray, size_t rownum)
 {
-    varlen_t varmat = {};
-    varmat.rownum = rownum;
-    varmat.lenarray = (size_t*) calloc(rownum, sizeof(size_t));
-    varmat.matrix = (int**) calloc(rownum, sizeof(int *));
-    memcpy(varmat.lenarray, lenarray, rownum * sizeof(size_t));
+    assert(varmat   != NULL);
+    assert(lenarray != NULL);
+
+    varmat->rownum = rownum;
+    varmat->lenarray = (size_t*) calloc(rownum, sizeof(size_t));
+    varmat->matrix = (int**) calloc(rownum, sizeof(int *));
+    memcpy(varmat->lenarray, lenarray, rownum * sizeof(size_t));
 
     for (size_t index = 0; index < rownum; index++)
-        varmat.matrix[index] = (int *) calloc(lenarray[index], sizeof(int));
-    return varmat;
+        varmat->matrix[index] = (int *) calloc(lenarray[index], sizeof(int));
 }
 
 void varlenDtor(varlen_t* varmat)

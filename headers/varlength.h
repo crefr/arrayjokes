@@ -8,7 +8,7 @@ typedef struct varlen
     size_t* lenarray;
 } varlen_t;
 
-varlen_t varlenCtor(size_t* lenarray, size_t strnum);
+void varlenCtor(varlen_t* varmat, size_t* lenarray, size_t rownum);
 void printVarlen(varlen_t varmat);
 void varlenDtor(varlen_t* varmat);
 
