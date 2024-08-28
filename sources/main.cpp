@@ -3,44 +3,16 @@
 
 #include "teamTable.h"
 #include "rectangle.h"
-
-const int TEAMCOUNT = 6;
-const int TABLENUM = (TEAMCOUNT * (TEAMCOUNT - 1)) / 2;
-
-const int SIZEX = 50000;
-const int SIZEY = 50000;
-
-void teams();
+#include "varlength.h"
 
 int main()
 {
-    //const int data[SIZEY][SIZEX] =
-    //    {
-    //        {1, 2, 8, 5, 5},
-    //        {9, 8, 7, 6, 9},
-    //        {8, 6, 4, 8, 7},
-    //        {8, 8, 6, 4, 1},
-    //        {9, 1, 5, 6, 4}
-    //    };
-    rectangle_t matrix = rectCtor(SIZEX, SIZEY);
-    // fillRect(matrix, (const int *)data);
+    size_t lens[] = {1,5,8,3};
+    const size_t LENNUM = sizeof(lens) / sizeof(lens[0]);
 
-    // printRectangle(matrix);
-    printf("%lld\n", determinator(matrix));
-    rectDtor(&matrix);
+    varlen_t var = varlenCtor(lens, LENNUM);
+    printVarlen(var);
+
+    varlenDtor(&var);
     return 0;
-}
-
-void teams()
-{
-    struct score_t teamTable[TABLENUM] = {};
-    while (1)
-    {
-        int team1 = 0, team2 = 0, val1 = 0, val2 = 0;
-        printf("Enter team1, team2, val1 and val2:\n");
-        scanf("%d %d %d %d", &team1, &team2, &val1, &val2);
-
-        teamFillVal(teamTable, team1, team2, val1, val2);
-        printTeamTable(teamTable, TEAMCOUNT);
-    }
 }
